@@ -8,6 +8,7 @@ const validation = require('./validation/confirmSkus');
 const sku2item = require('./sku2item/sku2item');
 const scraper = require('./Scraper/Scraper');
 const Medicine = require("./models/medicine")
+const updateById = require("./Scraper/updateById")
 
 
 
@@ -23,17 +24,14 @@ const app = express();
 
 
 // }())
-// (async function () {
-//     let total = 0;
+(async function () {
 
-//         await Medicine.find({char}).then((res) => {
+    await Medicine.find({ id: { $gte: 0, $lt: 20000 }, hasData: false }).lean().then((res) => {
 
-//             console.log(res.length)
+        updateById.updateById(res)
 
-//         })
-
-//     console.log(total)
-// }())
+    })
+}())
 
 
 

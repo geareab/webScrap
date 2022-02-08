@@ -56,7 +56,7 @@ const medicineSchema = new Schema({
     },
     in_stock: {
         type: Object,
-        required: true,
+        required: false,
     },
     quantity: {
         type: Number,

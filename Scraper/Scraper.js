@@ -48,52 +48,54 @@ const connectPuppeteer = async () => {
     })
 }
 
-
-const scrapMedicine = async (slug) => {
-    let info = {}
-    const t0 = performance.now();
+const openBrowser = async () => {
     const browser = await connectPuppeteer()
-    console.log("launched puppeteer")
+    console.log("launched puppeteer browser")
+    return browser;
+}
+
+const closeBrowser = async (browser) => {
+    await browser.close().then(() => {
+        console.log("closed browser")
+    })
+}
+
+const scrapMedicine = async (slug, browser) => {
+    let info = {}
+    //const browser = await openBrowser()
+
 
     const page = await browser.newPage()
+    console.log("new Page Opened")
     //load only html
     await page.setRequestInterception(true);
-    page.on('request', (request) => {
+    await page.on('request', (request) => {
         if (['image', 'stylesheet', 'font', 'script', 'media'].indexOf(request.resourceType()) !== -1) {
             request.abort();
         } else {
             request.continue();
-            console.log(request.url())
         }
     });
 
 
-    await page.goto(`https://www.1mg.com/drugs/${slug}`)
+    await page.goto(`https://www.1mg.com${slug}`)
 
-    const t1 = performance.now();
 
     //await page.screenshot({ path: 'page.png', fullPage: true, waitUntil: 'networkidle2' })
     const fetchInfo = await evaluate.pageEvaluate(page)
 
 
-
-
     info = await fetchInfo
 
     info = await processJSON.processJson(info)
-
-
-
-    const t2 = performance.now();
-
-    await browser.close().then(() => {
-        console.log("closed")
+    await page.close().then(() => {
+        console.log("page closed")
     })
-    console.log("Call to fetch took " + (t1 - t0) + " milliseconds.");
-    console.log("Call to process took " + (t2 - t0) + " milliseconds.");
+
+
     return info
 
 }
 
 
-module.exports = { scrapMedicine };
+module.exports = { scrapMedicine, closeBrowser, openBrowser };

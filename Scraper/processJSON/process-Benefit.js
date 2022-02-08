@@ -1,7 +1,8 @@
 const regex = new RegExp('^' + 'benefit', 'i');
-let benefitArray = []
+
 //complete deletes first element is it has less than 5 words
 const benefit = async (semiInfo) => {
+    let benefitArray = []
     semiInfo.uses.forEach((element, index) => {
         if (element.list.indexOf("Show More") > -1) {
             element.list.pop()
