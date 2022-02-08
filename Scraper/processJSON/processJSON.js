@@ -17,11 +17,11 @@ const processJson = async (info) => {
     info = await processBenefit.benefit(info)
     info.side_effects = await processSideeffects.sideeffects(info.side_effects)
 
-    await fs.writeFile("input.json", JSON.stringify(info), function (err) {
-        if (err) throw err;
-        console.log('complete');
-    }
-    );
+    // await fs.writeFile("input.json", JSON.stringify(info), function (err) {
+    //     if (err) throw err;
+    //     console.log('complete');
+    // }
+    // );
     return info
 
 }

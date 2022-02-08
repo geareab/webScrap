@@ -201,7 +201,7 @@ const pageEvaluate = async (page) => {
         //logic here
         try {
             let drug_interaction = Array.from(document.getElementById("drug_interaction").getElementsByClassName('DrugInteraction__drug___1XyzI'))
-            let drug_interaction_lvl = Array.from(document.getElementById("drug_interaction").getElementsByClassName('DrugInteraction__interaction___nPIkU DrugInteraction__threatning___Uapx9'))
+            let drug_interaction_lvl = Array.from(document.getElementById("drug_interaction").getElementsByClassName('DrugInteraction__interaction___nPIkU'))
 
             let Jsoninteraction = drug_interaction.map((element, index) => {
                 let drug_interactionJSON = {}

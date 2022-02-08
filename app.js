@@ -26,9 +26,9 @@ const app = express();
 // }())
 (async function () {
 
-    await Medicine.find({ id: { $gte: 0, $lt: 20000 }, hasData: false }).lean().then((res) => {
+    await Medicine.find({ id: { $gte: process.env.DOWN, $lt: process.env.UP }, hasData: false }).lean().then((res) => {
 
-        updateById.updateById(res)
+        //updateById.updateById(res)
 
     })
 }())
