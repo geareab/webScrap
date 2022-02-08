@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 const medicineSchema = new Schema({
     is_discontinued: {
         type: Boolean,
-        required: false,
+        required: true,
     },
     manufacturer_name: {
         type: String,
-        required: false,
+        required: true,
     },
     type: {
         type: String,
-        required: false,
+        required: true,
     },
     price: {
         type: Number,
-        required: false,
+        required: true,
     },
     name: {
         type: String,
@@ -24,43 +24,51 @@ const medicineSchema = new Schema({
     },
     id: {
         type: Number,
-        required: false,
+        required: true,
     },
     sku_id: {
         type: Number,
-        required: false,
+        required: true,
     },
     available: {
         type: Boolean,
-        required: false,
+        required: true,
     },
     pack_size_label: {
         type: String,
-        required: false,
+        required: true,
     },
     rx_required: {
         type: Object,
-        required: false,
+        required: true,
     },
     slug: {
         type: String,
-        required: false,
+        required: true,
     },
     short_composition: {
         type: String,
-        required: false,
+        required: true,
     },
     image_url: {
         type: String,
-        required: false,
+        required: true,
     },
     in_stock: {
         type: Object,
-        required: false,
+        required: true,
     },
     quantity: {
         type: Number,
+        required: true,
+    },
+    data: {
+        type: Object,
         required: false,
+    },
+    hasData: {
+        type: Boolean,
+        required: true,
     },
 });
 

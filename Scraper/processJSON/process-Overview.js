@@ -3,12 +3,13 @@
 const overview = async (semiInfo) => {
     //const regex = new RegExp('^' + 'storage', 'i');
     const semiInfoNonEmpty = semiInfo.filter(function (e) { return e });
-    let storageIndex = 0;
-    if (semiInfoNonEmpty[0].split().length < 5) {
+    if (semiInfoNonEmpty[0].split(" ").length < 2) {
         semiInfoNonEmpty.shift()
     }
+    //delete similar elements
+    const uniq = [...new Set(semiInfoNonEmpty)];
 
-    return (semiInfoNonEmpty ? semiInfoNonEmpty : "")
+    return (uniq ? uniq : "")
 }
 
 module.exports = { overview };
