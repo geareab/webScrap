@@ -14,16 +14,14 @@ const updateById = async (res) => {
         let data = await scraper.scrapMedicine(r.slug, browser)
         let update = await { data: data, hasData: true }
         let filter = { id: r.id };
-        await Medicine.findOneAndUpdate(filter, update, (err, doc) => {
-            if (err) console.log("Something wrong when updating data!");
-        }).clone().then(() => {
+        await Medicine.findOneAndUpdate(filter, update).then(() => {
             console.log(`success:${r.id}`);
         });
 
         const t2 = performance.now();
         console.log("saving took " + (t2 - t0) + " milliseconds.");
-        console.log("sleeping for 0.5 sec")
-        await sleep(500)
+        console.log("sleeping for 0.2 sec")
+        await sleep(200)
     }
 
 

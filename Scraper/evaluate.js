@@ -228,7 +228,7 @@ const pageEvaluate = async (page) => {
                 if (usesDiscription[index]) {
                     usesJSON.heading = usesDiscription[index].innerText
                 }
-                usesJSON.list = element.innerText.split("\n")
+                usesJSON.list = element.innerText.split("\n").filter(function (el) { return el; });
                 return usesJSON
             })
             info.uses = (Jsonuses ? Jsonuses : "");

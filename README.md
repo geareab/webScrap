@@ -6,3 +6,12 @@
 //sku2item.fetchingSkus();
 
 this is used in app.js
+
+// (async function () {
+
+// // await Medicine.find({ id: { $lt: 800000, $gte: 700000 } }).lean().then(async (res) => {
+// // //updateById.updateById(res)
+
+// // })
+
+// }())
